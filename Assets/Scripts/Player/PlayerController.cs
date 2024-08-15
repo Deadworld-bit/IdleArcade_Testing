@@ -15,14 +15,17 @@ public class PlayerController : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         movement = context.ReadValue<Vector2>();
+        //Debug.Log(movement);
     }
     public void OnMouseLook(InputAction.CallbackContext context)
     {
         mouseLook = context.ReadValue<Vector2>();
+        //Debug.Log(mouseLook);
     }
     public void OnJoystickLook(InputAction.CallbackContext context)
     {
         joystickLook = context.ReadValue<Vector2>();
+        //Debug.Log(joystickLook);
     }
 
     void Start()
