@@ -37,7 +37,7 @@ public class PlayerAnimationStateController : MonoBehaviour
 
         ChangeVelocity();
 
-        Debug.Log("Velo " + velocityX + " , " + velocityZ);
+        //Debug.Log("Velo " + velocityX + " , " + velocityZ);
 
         animator.SetFloat(VelocityZHash, velocityZ);
         animator.SetFloat(VelocityXHash, velocityX);
