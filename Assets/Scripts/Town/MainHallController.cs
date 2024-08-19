@@ -25,6 +25,7 @@ public class MainHallController : MonoBehaviour
 
     [Header("UI Settings")]
     [SerializeField] private GameObject UI;
+    [SerializeField] private GameObject message;
     [SerializeField] private TextMeshProUGUI title;
     [SerializeField] private TextMeshProUGUI description;
 
@@ -40,6 +41,7 @@ public class MainHallController : MonoBehaviour
         structureLevel = 1;
         InitializeStructure();
         UI.gameObject.SetActive(false);
+        message.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -71,32 +73,56 @@ public class MainHallController : MonoBehaviour
 
     public void ViewResources()
     {
-        
+
     }
 
     //Screen button
     public void LevelUp()
     {
-        //Missing condition to updagrade
-        if (structureLevel < 3)
+        if (townController.townGold >= (structureLevel * 2000) && townController.townIron >= (structureLevel * 2000)
+        && townController.townWood >= (structureLevel * 2000) && townController.townStone >= (structureLevel * 2000))
         {
+            townController.townGold -= structureLevel * 2000;
+            townController.townWood -= structureLevel * 2000;
+            townController.townStone -= structureLevel * 2000;
+            townController.townIron -= structureLevel * 2000;
             structureLevel++;
-            Debug.Log(structureLevel);
             structureHealth = structureLevel * 5000;
             maximumResources = structureLevel + 500;
+            townController.townGoldMaximum += structureLevel * 1000;
+            townController.townStoneMaximum += structureLevel * 1000;
+            townController.townWoodMaximum += structureLevel * 1000;
+            townController.townIronMaximum += structureLevel * 1000;
             UpdateStructure();
+        }
+        else
+        {
+            message.gameObject.SetActive(true);
         }
     }
 
     public void FixStructure()
     {
-        //Missing condition to updagrade
-        structureHealth = structureLevel * 5000;
+        if (townController.townGold >= (structureLevel * 200) && townController.townIron >= (structureLevel * 200)
+        && townController.townWood >= (structureLevel * 200) && townController.townStone >= (structureLevel * 200))
+        {
+            message.gameObject.SetActive(false);
+            structureHealth = structureLevel * 5000;
+            townController.townGold -= structureLevel * 200;
+            townController.townWood -= structureLevel * 200;
+            townController.townStone -= structureLevel * 200;
+            townController.townIron -= structureLevel * 200;
+        }
+        else
+        {
+            message.gameObject.SetActive(true);
+        }
     }
 
     public void CancelUI()
     {
         UI.gameObject.SetActive(false);
+        message.gameObject.SetActive(false);
     }
 
     private void UpdateStructure()

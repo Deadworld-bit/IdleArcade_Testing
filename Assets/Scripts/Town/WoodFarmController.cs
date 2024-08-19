@@ -20,6 +20,7 @@ public class WoodFarmController : MonoBehaviour
 
     [Header("UI Settings")]
     [SerializeField] private GameObject UI;
+    [SerializeField] private GameObject message;
     [SerializeField] private TextMeshProUGUI title;
     [SerializeField] private TextMeshProUGUI description;
 
@@ -34,8 +35,12 @@ public class WoodFarmController : MonoBehaviour
     {
         structureLevel = 1;
         InitializeStructure();
-        resourceCoroutine = StartCoroutine(IncrementResourcesOverTime());
+        if (structureHealth > 0)
+        {
+            resourceCoroutine = StartCoroutine(IncrementResourcesOverTime());
+        }
         UI.gameObject.SetActive(false);
+        message.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -46,14 +51,14 @@ public class WoodFarmController : MonoBehaviour
         }
         else { structureHealth = 0; }
 
-        description.text = "Structure Level :" + structureLevel + "\nIncome : " + income + " Woods \n Storage: " + currentResources + " Woods \n Structure's Health : " + Mathf.Ceil(structureHealth);
+        description.text = "Structure Level :" + structureLevel + "\nIncome : " + income + " Woods \n Storage: " + currentResources + " / " + maximumResources + " Woods \n Structure's Health : " + Mathf.Ceil(structureHealth);
     }
 
     private void InitializeStructure()
     {
         currentStructure = Instantiate(structureLevel1, structureLocation.transform);
         structureHealth = structureLevel * 3000;
-        income = 100 * structureLevel;
+        income = 100;
         currentResources = 0;
         maximumResources = 1000;
     }
@@ -67,32 +72,59 @@ public class WoodFarmController : MonoBehaviour
 
     public void GetResources()
     {
-        townController.townGold += currentResources;
+        float availableSpace = townController.townWoodMaximum - townController.townWood;
+        if (currentResources <= availableSpace)
+        {
+            townController.townWood += currentResources;
+            currentResources = 0;
+        }
+        else
+        {
+            townController.townWood += availableSpace;
+            currentResources -= availableSpace;
+        }
     }
 
     //Screen button
     public void LevelUp()
     {
-        //Missing condition to updagrade
-        if (structureLevel < 3)
+        if (townController.townGold >= (structureLevel * 1000) && townController.townStone >= (structureLevel * 1000) && structureLevel < 3)
         {
+
+            townController.townGold -= structureLevel * 1000;
+            townController.townStone -= structureLevel * 1000;
             structureLevel++;
-            Debug.Log(structureLevel);
+            income += structureLevel * 100;
             structureHealth = structureLevel * 3000;
-            maximumResources = structureLevel + 500;
+            maximumResources += structureLevel * 500;
             UpdateStructure();
+        }
+        else
+        {
+            message.gameObject.SetActive(true);
         }
     }
 
     public void FixStructure()
     {
-        //Missing condition to updagrade
-        structureHealth = structureLevel * 3000;
+        if (townController.townGold >= (structureLevel * 100) && townController.townWood >= (structureLevel * 100) && townController.townStone >= (structureLevel * 100))
+        {
+            message.gameObject.SetActive(false);
+            structureHealth = structureLevel * 3000;
+            townController.townGold -= structureLevel * 100;
+            townController.townWood -= structureLevel * 100;
+            townController.townStone -= structureLevel * 100;
+        }
+        else
+        {
+            message.gameObject.SetActive(true);
+        }
     }
 
     public void CancelUI()
     {
         UI.gameObject.SetActive(false);
+        message.gameObject.SetActive(false);
     }
 
     private void UpdateStructure()
