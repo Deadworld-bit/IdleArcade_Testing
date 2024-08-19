@@ -19,6 +19,6 @@
 ![Project Third ScreenShot](https://github.com/Deadworld-bit/IdleArcade_Testing/blob/main/Pics/Screenshot%202024-08-20%20010200.png)<br><br>  
 
 ### Demo:
-![Project Third ScreenShot](https://www.youtube.com/watch?v=qtstSLPqZdM&t=22s)
+Check out this [gameplay video on YouTube](https://www.youtube.com/watch?v=qtstSLPqZdM&t=22s)!
 
 ##### © Deadworld 2024
