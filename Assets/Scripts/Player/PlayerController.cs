@@ -22,11 +22,6 @@ public class PlayerController : MonoBehaviour
 
     InteractableObject currentInteractable;
 
-    // private void Awake()
-    // {
-    //     playerCustomActions = new PlayerCustomActions();
-    // }
-
     //Allow to use input from new input system
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -43,28 +38,10 @@ public class PlayerController : MonoBehaviour
         joystickLook = context.ReadValue<Vector2>();
         //Debug.Log(joystickLook);
     }
-    // private void StartInteraction()
-    // {
-
-    // }
-    // private void EndInteraction()
-    // {
-
-    // }
-
-    // private void OnEnable()
-    // {
-    //     playerCustomActions.Enable();
-    // }
-
-    // private void OnDisable()
-    // {
-    //     playerCustomActions.Disable();
-    // }
 
     void Start()
     {
-        
+
     }
 
     void Update()
@@ -75,6 +52,10 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E) && currentInteractable != null)
             {
                 currentInteractable.Interact();
+            }
+            if (Input.GetKeyDown(KeyCode.F) && currentInteractable != null)
+            {
+                currentInteractable.GetResources();
             }
 
             RaycastHit hit;
@@ -171,12 +152,14 @@ public class PlayerController : MonoBehaviour
     {
         currentInteractable = newInteractable;
         currentInteractable.EnableOutline();
-        HubController.instance.EnableInteractionText(currentInteractable.message);
+        HubController.instance.EnableInteractionText(currentInteractable.message1);
+        HubController.instance.EnableGetResourceText(currentInteractable.message2);
     }
 
     private void DisableCurrentInteractable()
     {
         HubController.instance.DisableInteractionText();
+        HubController.instance.DisableGetResourceText();
         if (currentInteractable)
         {
             currentInteractable.DisableOutline();

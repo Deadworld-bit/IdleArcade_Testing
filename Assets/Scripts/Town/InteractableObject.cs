@@ -6,8 +6,10 @@ using UnityEngine.Events;
 public class InteractableObject : MonoBehaviour
 {
     Outline outline;
-    public string message;
+    public string message1;
+    public string message2;
     public UnityEvent onInteraction;
+    public UnityEvent onGetResources;
 
     private void Start()
     {
@@ -18,6 +20,11 @@ public class InteractableObject : MonoBehaviour
     public void Interact()
     {
         onInteraction.Invoke();
+    }
+
+    public void GetResources()
+    {
+        onGetResources.Invoke();
     }
 
     public void DisableOutline()

@@ -8,6 +8,7 @@ public class HubController : MonoBehaviour
 {
     public static HubController instance;
     [SerializeField] TMP_Text interactionText;
+    [SerializeField] TMP_Text getResourceText;
 
     private void Awake()
     {
@@ -23,5 +24,16 @@ public class HubController : MonoBehaviour
     public void DisableInteractionText()
     {
         interactionText.gameObject.SetActive(false);
+    }
+
+    public void EnableGetResourceText(string text)
+    {
+        getResourceText.text = text + " (F)";
+        getResourceText.gameObject.SetActive(true);
+    }
+
+    public void DisableGetResourceText()
+    {
+        getResourceText.gameObject.SetActive(false);
     }
 }
