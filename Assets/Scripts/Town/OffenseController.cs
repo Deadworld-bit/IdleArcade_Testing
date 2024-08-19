@@ -78,8 +78,8 @@ public class OffenseController : MonoBehaviour
     //Screen button
     public void LevelUp()
     {
-        if (townController.townGold >= (structureLevel * 100) && townController.townIron >= (structureLevel * 100)
-        && townController.townWood >= (structureLevel * 100) && townController.townStone >= (structureLevel * 100))
+        if (townController.townGold >= (structureLevel * 1500) && townController.townIron >= (structureLevel * 1500)
+        && townController.townWood >= (structureLevel * 1500) && townController.townStone >= (structureLevel * 1500))
         {
             townController.townGold -= structureLevel * 1500;
             townController.townWood -= structureLevel * 1500;
