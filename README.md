@@ -14,8 +14,8 @@
 
 ### Screenshots:
 
-![Project First ScreenShot](https://github.com/Deadworld-bit/TurnBasedStrategy_Testing/blob/main/Pictures/Screenshot%202023-07-01%20143517.png)<br><br>
-![Project Second ScreenShot](https://github.com/Deadworld-bit/TurnBasedStrategy_Testing/blob/main/Pictures/Screenshot%202024-07-07%20153308.png)<br><br>  
-![Project Third ScreenShot](https://github.com/Deadworld-bit/TurnBasedStrategy_Testing/blob/main/Pictures/Screenshot%202024-07-07%20153241.png)<br><br>  
+![Project First ScreenShot](https://github.com/Deadworld-bit/IdleArcade_Testing/blob/main/Pics/Screenshot%202024-08-20%20010008.png)<br><br>
+![Project Second ScreenShot](https://github.com/Deadworld-bit/IdleArcade_Testing/blob/main/Pics/Screenshot%202024-08-20%20010051.png)<br><br>  
+![Project Third ScreenShot](https://github.com/Deadworld-bit/IdleArcade_Testing/blob/main/Pics/Screenshot%202024-08-20%20010200.png)<br><br>  
 
 ##### © Deadworld 2024
