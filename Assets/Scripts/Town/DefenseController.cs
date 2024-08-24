@@ -58,7 +58,7 @@ public class DefenseController : MonoBehaviour
     {
         currentStructure = Instantiate(structureLevel1, structureLocation.transform);
         structureHealth = structureLevel * 6000;
-        income = 100;
+        income = 300;
         currentResources = 0;
         maximumResources = 1000;
     }

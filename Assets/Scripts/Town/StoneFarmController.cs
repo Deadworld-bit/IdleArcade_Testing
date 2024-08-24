@@ -95,7 +95,7 @@ public class StoneFarmController : MonoBehaviour
             structureLevel++;
             income += structureLevel * 100;
             structureHealth = structureLevel * 4000;
-            maximumResources = structureLevel + 500;
+            maximumResources += structureLevel * 500;
             UpdateStructure();
         }
         else
